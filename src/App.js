@@ -9,11 +9,15 @@ function App() {
   const [seasons, setSeasons] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
   const [newDataCounter, setNewDataCounter] = useState(0);
+  const [currentSeason, setCurrentSeason] = useState([])
 
   const getSeasons = () => {
     const request = new Request();
     request.get("https://still-scrubland-50936.herokuapp.com/api/seasons")
-    .then(data => { setSeasons(data) })
+    .then(data => { 
+      setSeasons(data)
+      setCurrentSeason(data[data.length -1])
+     })
     .then(() => setIsLoaded(true));
   };
 
@@ -40,6 +44,7 @@ function App() {
         <FirstPage
           seasons={seasons}
           incrementDataCounter={incrementDataCounter}
+          currentSeasonNumber={currentSeason.seasonNumber}
         />
     </>
   );

@@ -61,7 +61,7 @@ const ManagePlayers = () => {
     return(
         <>
         <div id="new-player-form">
-        <h1>Create New Player Tab</h1>
+        <h3>Create New Player Tab</h3>
         <form  onSubmit={createPlayer}>
         <label>Player Name: </label>
         <input className="input" onChange={handlePlayerName} type="text" name="name" value={statePlayer.name}></input>
