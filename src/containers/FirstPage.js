@@ -1,13 +1,22 @@
 import React from 'react';
+import NewSeason from '../components/NewSeason';
+import ManagePlayers from '../components/ManagePlayers';
 
-const FirstPage = ({seasons}) => {
+const FirstPage = ({seasons, incrementDataCounter}) => {
+
+    if (seasons.length < 1){
+        return (
+            <NewSeason
+            seasons={seasons}
+            incrementDataCounter={incrementDataCounter}
+            />
+        )
+    }
 
     return(
-<>
-<h1>season number {seasons[0].seasonNumber}</h1>
-            
-<h1>nr of players {seasons[0].players.length}</h1>         
-</>
+        <>
+        <ManagePlayers/> 
+        </>
     );
 }
 

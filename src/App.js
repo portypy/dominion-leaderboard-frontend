@@ -8,6 +8,7 @@ function App() {
 
   const [seasons, setSeasons] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [newDataCounter, setNewDataCounter] = useState(0);
 
   const getSeasons = () => {
     const request = new Request();
@@ -18,7 +19,12 @@ function App() {
 
   useEffect(() => {
     getSeasons()
-  },[]);
+  },[newDataCounter]);
+
+  const incrementDataCounter = () => {
+    setNewDataCounter(newDataCounter + 1)
+  };
+
 
   if (isLoaded === false){
     return(
@@ -26,16 +32,17 @@ function App() {
       Wait...
       </div>
     );
-  } else {
-    return (
-      <div>
-          <h1>Hello</h1>
-          <FirstPage
-          seasons={seasons} 
-          />
-    </div>
+  } 
+  
+  return (
+      <>
+        <h1>Hello</h1>         
+        <FirstPage
+          seasons={seasons}
+          incrementDataCounter={incrementDataCounter}
+        />
+    </>
   );
-  }
 }
   
 export default App;
