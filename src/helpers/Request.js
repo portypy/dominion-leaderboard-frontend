@@ -1,8 +1,8 @@
 class Request {
 
-    async get(url) {
-      const res = await fetch(url);
-      return await res.json();
+    get(url) {
+      return fetch(url)
+      .then((res) => res.json());
     }
 
     delete(url) {
