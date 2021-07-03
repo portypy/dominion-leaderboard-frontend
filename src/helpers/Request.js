@@ -1,15 +1,25 @@
 class Request {
 
-    get(url) {
-      return fetch(url)
-      .then((res) => res.json());
+    async get(url) {
+      try {
+      const res = await fetch(url);
+      return await res.json();
+      }
+      catch(error) {
+        return console.error(error);
+      }
     }
 
     delete(url) {
+      try {
       return fetch(url, {
         method: "DELETE",
         headers: {'Content-Type': 'application/json'}
       })
+    }
+    catch(error) {
+      return console.error(error);
+    }
     }
 
     post(url, payload){

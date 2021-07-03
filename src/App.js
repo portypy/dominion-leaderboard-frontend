@@ -8,25 +8,32 @@ function App() {
 
   const [seasons, setSeasons] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [newDataCounter, setNewDataCounter] = useState(0);
-  const [currentSeason, setCurrentSeason] = useState([])
+  const [newStateCounter, setNewStateCounter] = useState(0);
+  const [currentSeason, setCurrentSeason] = useState([]);
+  const [allPlayers, setAllPlayers] = useState([]);
 
   const getSeasons = () => {
     const request = new Request();
     request.get("https://still-scrubland-50936.herokuapp.com/api/seasons")
     .then(data => { 
       setSeasons(data)
-      setCurrentSeason(data[data.length -1])
-     })
+      setCurrentSeason(data[data.length -1]) })
     .then(() => setIsLoaded(true));
+  };
+
+  const getAllPlayers = () => {
+    const request = new Request();
+    request.get("https://still-scrubland-50936.herokuapp.com/api/players")
+    .then(data => setAllPlayers(data))
   };
 
   useEffect(() => {
     getSeasons()
-  },[newDataCounter]);
+    getAllPlayers()
+  },[newStateCounter]);
 
-  const incrementDataCounter = () => {
-    setNewDataCounter(newDataCounter + 1)
+  const incrementStateCounter = () => {
+    setNewStateCounter(newStateCounter + 1)
   };
 
 
@@ -43,8 +50,9 @@ function App() {
         <h1>Hello</h1>         
         <FirstPage
           seasons={seasons}
-          incrementDataCounter={incrementDataCounter}
-          currentSeasonNumber={currentSeason.seasonNumber}
+          allPlayers={allPlayers}
+          incrementStateCounter={incrementStateCounter}
+          currentSeason={currentSeason}
         />
     </>
   );

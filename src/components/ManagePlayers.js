@@ -1,25 +1,13 @@
-import React, { useState, useEffect } from "react";
+import {React, useState} from "react";
 import Request from "../helpers/Request"
 
-const ManagePlayers = () => {
+const ManagePlayers = ({allPlayers, incrementStateCounter}) => {
 
     const [statePlayer, setStatePlayer] = useState(
         {
             name: ""
         }
     )
-
-    const [allPlayers, setAllPlayers] = useState([])
-
-    const getAllPlayers = () => {
-        const reqest = new Request();
-        reqest.get("https://still-scrubland-50936.herokuapp.com/api/players")
-        .then(data => setAllPlayers(data))
-    }
-    
-    useEffect(() => {
-        getAllPlayers() 
-     }, [])
 
     const handlePlayerName = (event) => {
         let propertyName = event.target.name;
@@ -33,7 +21,7 @@ const ManagePlayers = () => {
         if (statePlayer.name !== ""){
         const request = new Request()
         request.post("https://still-scrubland-50936.herokuapp.com/api/players", statePlayer)
-        .then(() => getAllPlayers())
+        .then(() => incrementStateCounter())
         }
         setStatePlayer({
             name: ""
@@ -44,17 +32,15 @@ const ManagePlayers = () => {
         const request = new Request();
         if (player.seasons.length === 0 || player.seasons[player.seasons.length -1].completed){
             request.delete(`https://still-scrubland-50936.herokuapp.com/api/players/${player.id}`)
-            .then(() => getAllPlayers())
+            .then(() => incrementStateCounter())
         }
     }
 
-    const allPlayerNodes = allPlayers.map((player) => {  
+    const allPlayersNodes = allPlayers.map((player) => {  
         return( 
-            
               <li key={player.id}>
                 <button className="button" onClick={(() => deletePlayer(player))}>Delete {player.name}</button>
-              </li>
-            
+              </li>        
             )  
     })
 
@@ -69,7 +55,7 @@ const ManagePlayers = () => {
         </form>
         </div>
         <ul id="all-players-manage">
-             {allPlayerNodes}
+             {allPlayersNodes}
         </ul>
         </>
     )

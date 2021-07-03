@@ -1,7 +1,7 @@
 import React from 'react';
 import Request from '../helpers/Request';
 
-const NewSeason = ({seasons, incrementDataCounter}) => {
+const NewSeason = ({seasons, incrementStateCounter}) => {
 
 
     const handleSubmitNewSeason = () => {
@@ -10,7 +10,7 @@ const NewSeason = ({seasons, incrementDataCounter}) => {
             seasonNumber: (seasons.length + 1)
             }
         request.post("https://still-scrubland-50936.herokuapp.com/api/seasons", seasonToSubmit)
-        .then(() => (incrementDataCounter()));
+        .then(() => (incrementStateCounter()));
     }
 
     return (

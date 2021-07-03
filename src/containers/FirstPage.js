@@ -1,32 +1,35 @@
 import React from 'react';
 import NewSeason from '../components/NewSeason';
 import ManagePlayers from '../components/ManagePlayers';
-import NewGame from '../components/NewGame';
+import NewGame from './NewGame';
 
-const FirstPage = ({seasons, incrementDataCounter, currentSeasonNumber}) => {
+const FirstPage = ({seasons, incrementStateCounter, currentSeason, allPlayers}) => {
 
-
-
-    if (seasons.length < 1){
+    if (seasons.length === 0){
         return (
             <NewSeason
             seasons={seasons}
-            incrementDataCounter={incrementDataCounter}
+            incrementStateCounter={incrementStateCounter}
             />
         )
     } else {
 
         return(
-            <div>
+            <>
             <h1>Manage Players</h1>
             <ManagePlayers
+            allPlayers={allPlayers}
+            incrementStateCounter={incrementStateCounter}
             /> 
 
             <h1>New Game</h1>
             <NewGame
-            currentSeasonNumber={currentSeasonNumber}
+            currentSeason={currentSeason}
+            allPlayers={allPlayers}
+            incrementStateCounter={incrementStateCounter}
+
             />
-            </div>
+            </>
         );
     }
 }
