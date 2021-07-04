@@ -24,6 +24,7 @@ const NewGame = ( {incrementStateCounter, allPlayers, currentSeason} ) => {
                     allPlayers={allPlayers}
                     currentGame={currentGame}
                     incrementStateCounter={incrementStateCounter}
+                    currentSeason={currentSeason}
                     />
                 )
         } else {
