@@ -18,12 +18,12 @@ const AddPlayersToGame = ({allPlayers, currentGame, incrementStateCounter, curre
     let handleUpdateGame = () => {
         const request = new Request();
         currentGame.players = selectedPlayers;
-        request.put(`https://still-scrubland-50936.herokuapp.com/api/games/${currentGame.id}`, currentGame);
 
         for (let selectedPlayer of selectedPlayers) {
-            if (!currentSeason.players.some(playerInCurrentSeason => playerInCurrentSeason.id ===  selectedPlayer.id)){
+            if (!currentSeason.players.some(playerInCurrentSeason => playerInCurrentSeason.id === selectedPlayer.id)){
                 currentSeason.players.push(selectedPlayer)}
         }
+        request.put(`https://still-scrubland-50936.herokuapp.com/api/games/${currentGame.id}`, currentGame);
         request.put(`https://still-scrubland-50936.herokuapp.com/api/seasons/${currentSeason.id}`, currentSeason)
 
         incrementStateCounter();
