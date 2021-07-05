@@ -3,13 +3,12 @@ import Request from '../helpers/Request';
 
 const NewSeason = ({seasons, incrementStateCounter}) => {
 
-
-    const handleSubmitNewSeason = () => {
+    const handleSubmitNewSeason = async () => {
         const request = new Request();
         const seasonToSubmit = {
             seasonNumber: (seasons.length + 1)
             }
-        request.post("https://still-scrubland-50936.herokuapp.com/api/seasons", seasonToSubmit)
+        await request.post("https://still-scrubland-50936.herokuapp.com/api/seasons", seasonToSubmit)
         .then(() => (incrementStateCounter()));
     }
 

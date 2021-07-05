@@ -25,8 +25,9 @@ const AddPlayersToGame = ({allPlayers, currentGame, incrementStateCounter, curre
         }
         request.put(`https://still-scrubland-50936.herokuapp.com/api/games/${currentGame.id}`, currentGame);
         request.put(`https://still-scrubland-50936.herokuapp.com/api/seasons/${currentSeason.id}`, currentSeason)
-
-        incrementStateCounter();
+        .then(() => incrementStateCounter())
+        .then(() => {window.location = '/add_points'})
+        ;
 
     }
 
@@ -36,9 +37,7 @@ const AddPlayersToGame = ({allPlayers, currentGame, incrementStateCounter, curre
     const allPlayersNodes = allPlayers.map((player) => {
         return(<li key={player.id}> <button onClick={() => handleAddPlayerToGame(player)}> + {player.name} </button></li>)});
     
-
     
-    if (selectedPlayers.length < 4){
         return(
             <>
                 <h4>add player to the game</h4>
@@ -51,25 +50,9 @@ const AddPlayersToGame = ({allPlayers, currentGame, incrementStateCounter, curre
                     {selectedPlayersNodes}
                 </ul>
     
-                <button>not ready</button>
+                {(selectedPlayers.length < 4) ? <button> not ready </button> : <button onClick={handleUpdateGame}> ready </button>}
             </>
         )
-    } else {
-        return(
-            <>
-                <h4>add player to the game</h4>
-                <ul>
-                    {allPlayersNodes}
-                </ul>
-    
-                <h4>players added</h4>
-                <ul>
-                    {selectedPlayersNodes}
-                </ul>
-    
-                <button onClick={handleUpdateGame} >ready</button>
-            </>
-        )    }
 }
 
 export default AddPlayersToGame;

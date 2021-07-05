@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import Request from './helpers/Request';
+import {BrowserRouter as Router} from 'react-router-dom';
+import Header from './components/Header';
+import NavBar from './components/Navbar';
 import FirstPage from './containers/FirstPage';
 
 
@@ -36,7 +39,6 @@ function App() {
     setNewStateCounter(newStateCounter + 1)
   };
 
-
   if (isLoaded === false){
     return(
       <div>
@@ -44,18 +46,19 @@ function App() {
       </div>
     );
   } 
-  
+
   return (
-      <>
-        <h1>Hello</h1>         
+    <Router> 
+        <Header></Header>
+        <NavBar></NavBar>
         <FirstPage
           seasons={seasons}
           allPlayers={allPlayers}
           incrementStateCounter={incrementStateCounter}
           currentSeason={currentSeason}
-        />
-    </>
-  );
+        /> 
+    </Router>
+  )
 }
   
 export default App;

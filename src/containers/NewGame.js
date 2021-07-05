@@ -16,10 +16,8 @@ const NewGame = ( {incrementStateCounter, allPlayers, currentSeason} ) => {
         .then(incrementStateCounter());
     };
 
-    
     if (currentSeason.games.length > 0  && (currentGame !== undefined)) {
-       if (allPlayers.length >= 4){ // min 4 players for the ranking game
-           return( 
+            return( 
                     <AddPlayersToGame
                     allPlayers={allPlayers}
                     currentGame={currentGame}
@@ -27,15 +25,10 @@ const NewGame = ( {incrementStateCounter, allPlayers, currentSeason} ) => {
                     currentSeason={currentSeason}
                     />
                 )
-        } else {
+        } else { 
             return (
-                <h3>need 4 players</h3>
-            )
-        }
-    } else {
-        return (
             <button onClick={handleCreateNewGame}>New Game </button> 
-        )
+            )
     }
 }
 
