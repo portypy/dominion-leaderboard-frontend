@@ -37,7 +37,8 @@ const FirstPage = ({seasons, incrementStateCounter, currentSeason, allPlayers}) 
                     render={() => <NewSeason seasons={seasons}
                                             incrementStateCounter={incrementStateCounter}/>}/>
             <Route path="/add_points"
-                    render={() => <AddPoints></AddPoints>}/>
+                    render={() => <AddPoints currentSeason={currentSeason}
+                                            incrementStateCounter={incrementStateCounter}/>}/>
         </Switch>
     )
 }
