@@ -35,8 +35,8 @@ const AddPoints = ({ incrementStateCounter, currentGame }) => {
             player.totalPoints += player.gamePoints,
             player.seasonGames += 1,
             player.totalGames += 1,
-            player.seasonAvPosition = player.seasonAvPosition + ((player.gamePosition - player.seasonAvPosition) / (player.seasonGames + 1)),
-            player.totalAvPosition = player.totalAvPosition + ((player.gamePosition - player.totalAvPosition) / (player.totalGames + 1)),
+            player.seasonAvPosition = player.seasonAvPosition + ((player.gamePosition - player.seasonAvPosition) / (player.seasonGames)),
+            player.totalAvPosition = player.totalAvPosition + ((player.gamePosition - player.totalAvPosition) / (player.totalGames)),
             currentGame.results[player.id] = player.gamePoints,
             currentGame.positions[player.id] = player.gamePosition
             )
