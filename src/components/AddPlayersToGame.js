@@ -58,13 +58,10 @@ const AddPlayersToGame = ({allPlayers, currentGame, incrementStateCounter, curre
     } else {
         return(
             <AddPoints
-            currentSeason={currentSeason}
             incrementStateCounter={incrementStateCounter}
             currentGame={currentGame}
             />
-
         )
-
     }
 }
 
